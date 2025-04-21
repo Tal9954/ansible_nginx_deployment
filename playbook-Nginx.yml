@@ -5,8 +5,6 @@
   vars_files:
     - nginx/vars/main.yml
 
-
-
   tasks:
     - name: Install nginx
       apt:
@@ -33,6 +31,13 @@
         url: https://www.sheldonbrown.com/web_sample1.html
         dest: /var/www/html/index.html
         mode: '0644'
+
+    - name: Insert greeting into existing HTML page
+      blockinfile:
+        path: /var/www/html/index.html
+        insertafter: '<body>'
+        block: |
+          <h1>Hello {{ name }}!</h1>
 
   handlers:
     - name: Restart nginx
