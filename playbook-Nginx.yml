@@ -32,14 +32,11 @@
         dest: /var/www/html/index.html
         mode: '0644'
 
-    - name: Insert greeting into existing HTML page
-      blockinfile:
+    - name: Replace the top of the page with a greeting
+      replace:
         path: /var/www/html/index.html
-        insertbefore: BOF
-        marker: ""
-
-        block: |
-          <h1>Hello {{ name }}!</h1>
+        regexp: '<h1>A Simple Sample Web Page</h1>'
+        replace: '<h1>Hello {{ name }}!</h1>'
 
   handlers:
     - name: Restart nginx
