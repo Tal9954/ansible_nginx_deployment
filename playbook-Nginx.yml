@@ -35,8 +35,8 @@
     - name: Replace the top of the page with a greeting
       replace:
         path: /var/www/html/index.html
-        regexp: '<h1>A Simple Sample Web Page</h1>'
-        replace: '<h1>Hello {{ name }}!</h1>'
+        regexp: '<H!>A Simple Sample Web Page</H1>'
+        replace: '<H1>Hello {{ name }}!</H1>'
 
   handlers:
     - name: Restart nginx
