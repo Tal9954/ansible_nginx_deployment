@@ -35,7 +35,7 @@
     - name: Replace the top of the page with a greeting
       replace:
         path: /var/www/html/index.html
-        regexp: '<H!>A Simple Sample Web Page</H1>'
+        regexp: '<H1>A Simple Sample Web Page</H1>'
         replace: '<H1>Hello {{ name }}!</H1>'
 
   handlers:
