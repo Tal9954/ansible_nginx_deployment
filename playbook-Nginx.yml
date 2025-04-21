@@ -35,7 +35,9 @@
     - name: Insert greeting into existing HTML page
       blockinfile:
         path: /var/www/html/index.html
-        insertafter: '<body>'
+        insertbefore: BOF
+        marker: ""
+
         block: |
           <h1>Hello {{ name }}!</h1>
 
