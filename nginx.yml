@@ -1,7 +1,7 @@
 ---
-- name: Install and configure nginx with port from Consul
-  hosts: servers
+- name: Install and configure nginx with dynamic port
   become: yes
+  hosts: all
 
   roles:
     - role: nginx
