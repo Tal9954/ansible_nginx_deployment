@@ -16,7 +16,7 @@
       replace:
         path: /etc/nginx/sites-available/default
         regexp: 'listen\s+80 default_server;'
-        replace: "listen {{ nginx_port }}"
+        replace: "listen {{ nginx_port }};"
       notify: Restart nginx
 
     - name: Ensure no other ports are configured (removes port 80 and 443 references)
