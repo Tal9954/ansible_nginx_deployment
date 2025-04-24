@@ -1,6 +1,6 @@
 ---
 - name: Install and configure nginx with port from Consul
-  hosts: server1
+  hosts: all
   become: yes
   vars_files:
     - nginx/vars/main.yml
