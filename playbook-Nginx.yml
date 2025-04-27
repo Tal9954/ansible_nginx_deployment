@@ -1,6 +1,6 @@
 ---
 - name: Install and configure nginx with port from Consul
-  hosts: all
+  hosts: server1_group
   become: yes
   vars_files:
     - nginx/vars/main.yml
@@ -12,7 +12,7 @@
         state: latest
         update_cache: yes
 
-    - name: Replace default nginx listen port with 6789
+    - name: Replace default nginx listen port with {{ nginx_port }}
       replace:
         path: /etc/nginx/sites-available/default
         regexp: 'listen\s+80 default_server;'
@@ -38,9 +38,16 @@
         regexp: '<H1>A Simple Sample Web Page</H1>'
         replace: '<H1>Hello {{ name }}!</H1>'
 
+    - name: Replace the picture
+      replace:
+        path: /var/www/html/index.html
+        regexp: '<IMG SRC="https://www.sheldonbrown.com/images/scb_eagle_contact.jpeg">'
+        replace: '<a href="https://ibb.co/h1MhgjgW"><img src="https://i.ibb.co/2Y6mFQFt/IMG-8362.jpg" alt="IMG-8362" border="0" /></a>'
+
   handlers:
     - name: Restart nginx
       service:
         name: nginx
         state: restarted
+
 
